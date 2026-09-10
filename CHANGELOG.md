@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.20.0](https://github.com/grafana/alloy/compare/v1.19.0...v1.20.0) (2026-09-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* `prometheus.exporter.windows` now applies the documented default `textfile` directory (`<install dir>\textfile_inputs`) when neither `textfile.directories` nor the deprecated `text_file.text_file_directory` is set, restoring behavior that was lost in v1.11.0. Deployments that were relying on the collector silently returning nothing will start receiving any .prom files found there, or an error if that directory doesn't exist, either of which can be avoided by setting directories explicitly or removing textfile from enabled_collectors.
+
+### Features 🌟
+
+* Add 32MB and 64MB buckets to Loki histograms ([#7059](https://github.com/grafana/alloy/issues/7059)) ([c973f57](https://github.com/grafana/alloy/commit/c973f57c098a69ae0b89dc7ad5054bd574bc932d))
+* **database_observability.sql_server:** Add explain_plans collector ([#6941](https://github.com/grafana/alloy/issues/6941)) ([f7fec75](https://github.com/grafana/alloy/commit/f7fec758a27d15ab3a10ca89c0573a3a7cad4d3f))
+* **helm:** Add controller.dnsConfig to alloy chart pod spec ([#6399](https://github.com/grafana/alloy/issues/6399)) ([09252c3](https://github.com/grafana/alloy/commit/09252c3513a8e9c7528f245a878dceec1c6bb41d))
+* **loki.write:** Add loki_write_batch_size_bytes histogram ([#7052](https://github.com/grafana/alloy/issues/7052)) ([a38299a](https://github.com/grafana/alloy/commit/a38299a4e665bdf9c18f97e95a5d7f6c554cdfe9))
+* **monitors:** Support native histogram for service and pod monitors ([#6817](https://github.com/grafana/alloy/issues/6817)) ([0d731b0](https://github.com/grafana/alloy/commit/0d731b0e22c620202c6a55874981176180908762))
+* Move otelcol.exporter.faro to public preview ([#6940](https://github.com/grafana/alloy/issues/6940)) ([02d8c29](https://github.com/grafana/alloy/commit/02d8c29bde0a9a9501d8a6e8cd9b7afb8370b9bb))
+* Move otelcol.receiver.faro to public preview ([#6939](https://github.com/grafana/alloy/issues/6939)) ([c7e3265](https://github.com/grafana/alloy/commit/c7e3265eff36dfb37ac953ece1d0672064ab3cd9))
+
+
+### Bug Fixes 🐛
+
+* Add backticks to component name  in generated do output ([#6934](https://github.com/grafana/alloy/issues/6934)) ([f001028](https://github.com/grafana/alloy/commit/f001028f246b526c59b9af0149260c58808f79d2))
+* **database_observability.mysql:** Resolve query-parsed table names against known-table casing ([#6953](https://github.com/grafana/alloy/issues/6953)) ([7243eae](https://github.com/grafana/alloy/commit/7243eae40968e25c7777359ed0aa06ee48cc714f))
+* **deps:** Update Go dependencies to fix security advisories ([#7041](https://github.com/grafana/alloy/issues/7041)) ([bff3d36](https://github.com/grafana/alloy/commit/bff3d36eb18e62891ddf25a51b66d7f2dde2869c))
+* Ensure Windows exporter uses correct text file defaults when not specified ([#7047](https://github.com/grafana/alloy/issues/7047)) ([b5c82cb](https://github.com/grafana/alloy/commit/b5c82cb4871225a085ec0aa592bcaed57d60c61c))
+* **faro.receiver:** Allow Faro SDK retry headers through CORS ([#7054](https://github.com/grafana/alloy/issues/7054)) ([a6e19ce](https://github.com/grafana/alloy/commit/a6e19ce86d3f71d257bf4ff27813370a292adfcc))
+* **loki.source.journal:** Dont override configured job label ([#6982](https://github.com/grafana/alloy/issues/6982)) ([866eca2](https://github.com/grafana/alloy/commit/866eca2a9f493ae5aabd596a1ae225674f373358))
+* **loki.source.kubernetes_events:** Check for event.Series.LastObservedTime ([#6825](https://github.com/grafana/alloy/issues/6825)) ([172f0b5](https://github.com/grafana/alloy/commit/172f0b56f620ed637f036939f6588aacbadcaeb1))
+* Only log cluster warning for host-specific exporters when clustering is enabled ([#7048](https://github.com/grafana/alloy/issues/7048)) ([163a617](https://github.com/grafana/alloy/commit/163a617b2a76d1a4482de7ce154206a269d82fc6))
+* **otelcol.auth.google:** Set valid authorization token header ([#7031](https://github.com/grafana/alloy/issues/7031)) ([0dffb9f](https://github.com/grafana/alloy/commit/0dffb9f2829cf6ee5e527568e22a5ba82cb5dd5f))
+* Prevent loki.write WAL watcher panic when a record spans a page boundary ([#6766](https://github.com/grafana/alloy/issues/6766)) ([b7d69af](https://github.com/grafana/alloy/commit/b7d69af993b0c04563bf04195c9c359e6e2424ba)), refs [#6757](https://github.com/grafana/alloy/issues/6757)
+* **ui:** Add accessible auto-scroll toggle in live debugging ([#6649](https://github.com/grafana/alloy/issues/6649)) ([c86029b](https://github.com/grafana/alloy/commit/c86029b807b98d53346a795da0edd4aee406b0ea))
+* **windows:** Statically link Windows builds to fix missing DLL errors on startup ([#6972](https://github.com/grafana/alloy/issues/6972)) ([3914c54](https://github.com/grafana/alloy/commit/3914c54d8ff0516ec6bc4b91c38c0c671ff12623))
+
 ## [1.19.0](https://github.com/grafana/alloy/compare/v1.18.0...v1.19.0) (2026-08-21)
 
 
